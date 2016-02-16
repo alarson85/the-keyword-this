@@ -2,19 +2,25 @@
   // 1) What is the purpose of the 'this keyword'?
 
       //Answer
+      To keep values of objects precise. Avoid confusion with calling a variable in the global scope, because one may exist that you do not know about.
 
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
       //Answer
+      Explicit
+      Implicit
+      Default
+      New
 
   // 3) What is the difference between call and apply?
 
       //Answer
+      call will run with the arguments that you pass in.
 
   // 4) What does .bind do?
 
       //Answer
-
+      invokes a function
 
 //Next Problem
 
@@ -25,8 +31,16 @@
 
     //Code Here
 
-//Now, invoke the getUsername method and verify you got the username of the object and not anything else.
+    var user = {
+      username:'JebBush',
+      email: 'trumptrumpsjeb@gmail.com',
+      getUsername: function() {
+        return this.username;
+      }
+    }
 
+//Now, invoke the getUsername method and verify you got the username of the object and not anything else.
+user.getUsername();
 
 //Next Problem
 
@@ -34,6 +48,14 @@
 // Write the function definitions which will make the following function invocations function properly.
 
   //Function Invocations Here
+  var Car = function(make, model, year) {
+    this.make=make;
+    this.model=model;
+    this.year=year;
+    this.moveCar=function() {
+      return this.year += 10;
+    }
+  }
 
 var prius = new Car('Toyota', 'Prius', 2011);
 var mustang = new Car('Ford', 'Mustang', 2013);
@@ -55,7 +77,8 @@ var getYear = function(){
 
 //Note(no tests)
   //Code Here
-
+  getYear.call(prius);
+  getYear.call(mustang);
 
 //New Problem
 
@@ -76,9 +99,25 @@ setTimeout(getMyUsername, 5000);
 //Above you're given an object, a function, and a setTimeout invocation. After 5 seconds, what will the getUsername function return?
 //Note(no tests)
   //Answer Here
+  nothing, or possibly window
 
 //In the example above, what is the 'this keyword' bound to when getUsername runs?
 
   //Answer Here
-
+the default window
 //Fix the setTimeout invocation so that the user object will be the focal object when getUsername is ran.
+
+var myUser = {
+  username: 'iliketurtles',
+  age: 13,
+  email: 'iliketurtles@gmail.com'
+};
+
+var getMyUsername = function(){
+  console.log(this.username);
+};
+
+var setTimeout = getMyUsername.bind(myUser);
+
+setTimeout(getMyUsername, 5000);
+
