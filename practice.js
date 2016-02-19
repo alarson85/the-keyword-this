@@ -3,24 +3,25 @@
 
       //Answer
       To keep values of objects precise. Avoid confusion with calling a variable in the global scope, because one may exist that you do not know about.
+      Refer to the object, the pronoun of code.
 
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
       //Answer
-      Explicit
-      Implicit
-      Default
-      New
+      Explicit - .call, apply or bind
+      Implicit - left of the . when the . line is run.
+      Default - the window
+      New - using new
 
   // 3) What is the difference between call and apply?
 
       //Answer
-      call will run with the arguments that you pass in.
+      apply takes an array, call doesnt, when run.
 
   // 4) What does .bind do?
 
       //Answer
-      invokes a function
+      bind returns but doesnt invoke.
 
 //Next Problem
 
@@ -38,6 +39,7 @@
         return this.username;
       }
     }
+    //because the function is defined inside the object 'this' refers to the object.
 
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
 user.getUsername();
